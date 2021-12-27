@@ -1,0 +1,63 @@
+"""
+Sparse Arrays
+"""
+
+# My solution
+def matchingStrings(strings, queries):
+    n = len(strings)
+    1 <= n <= 1000
+    q = len(queries)
+    1 <= q <= 1000
+    results = []
+    for i in queries:
+        if type(i) == int or type(i) == float:
+            abs(i) <= 20
+        count = 0
+        for j in strings:
+            if type(j) == int or type(j) == float:
+                1 <= abs(j)
+            if i == j:
+                count += 1
+        results.append(count)
+    return results 
+    
+ # Editorial solution
+ 
+ """
+ For this solution: as the strings come in, create a hash map to accumulate the number of occurrences of each string. A lookup is all that is needed to retrieve 
+ your answers.
+ """
+ 
+ def matchingStrings(strings, queries):
+    words = dict()
+    ans = []
+    for w in strings:
+        if w in words:
+            words[w] += 1
+        else:
+            words[w] = 1
+    for q in queries:
+        if q in words:
+            ans.append(words[q])
+        else:
+            ans.append(0)
+    return ans
+    
+ """
+ Notes on the editorial solution:
+ https://towardsdatascience.com/faster-lookups-in-python-1d7503e9cd38:
+ You have to go through the entire list to get what you want. However, a dictionary will return the value you ask for without going through all keys.
+ 
+ Lookups are faster in dictionaries because Python implements them using hash tables.
+ 
+ If we explain the difference by Big O concepts, dictionaries have constant time complexity, O(1) while lists have linear time complexity, O(n)
+ 
+ However, we have a typical space-time tradeoff in dictionaries and lists. It means we can decrease the time necessary for our algorithm but we need to use more 
+ space in memory.
+ 
+ Although dictionaries are optimized a lot more in Python 3.6, they still use more memory than lists, since you need to use space for the keys and the lookup as 
+ well, while lists use space only for the values.
+ 
+ Why is looking up entries in a dictionary so much faster? It’s because of the way Python implements dictionaries using hash tables. Dictionaries are Python’s built-in mapping type and so have also been highly optimised. Sets are implemented 
+ in a similar way.
+ """
