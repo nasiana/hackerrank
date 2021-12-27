@@ -61,3 +61,50 @@ def matchingStrings(strings, queries):
  Why is looking up entries in a dictionary so much faster? It’s because of the way Python implements dictionaries using hash tables. Dictionaries are Python’s built-in mapping type and so have also been highly optimised. Sets are implemented 
  in a similar way.
  """
+ 
+ """
+ Lonely Integer
+ """
+
+# My solution - hehe I used code that I learnt in the previous example
+
+def lonelyinteger(a):
+    n = len(a)
+    hash_dict = dict()
+    for i in a:
+        if i in hash_dict:
+            hash_dict[i] += 1
+        else:
+            hash_dict[i] = 1
+    # the following line will find the key corresponding to value 1
+    return list(hash_dict.keys())[list(hash_dict.values()).index(1)]
+    
+    """
+    Notes: 
+    The index() method returns index of corresponding value in a list.
+    
+    The approach used here is to find two separate lists of keys and values.
+    
+    Then fetch the key using the position of the value in the val_list.
+    
+    As key at any position N in key_list will have corresponding value at position N in val_list. 
+    
+    I was inspired by this code from https://www.geeksforgeeks.org/python-get-key-from-value-in-dictionary/:
+# creating a new dictionary
+my_dict ={"java":100, "python":112, "c":11}
+ 
+# list out keys and values separately
+key_list = list(my_dict.keys())
+val_list = list(my_dict.values())
+ 
+# print key with val 100
+position = val_list.index(100)
+print(key_list[position])
+ 
+# print key with val 112
+position = val_list.index(112)
+print(key_list[position])
+ 
+# one-liner
+print(list(my_dict.keys())[list(my_dict.values()).index(112)])
+    """
