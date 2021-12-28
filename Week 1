@@ -131,3 +131,22 @@ def diagonalDifference(arr):
  Notes:
  Python doesn't have a built-in type for matrices. However, we can treat a list of a list as a matrix, therefore we code matrixes in Python as nested lists.
  """
+
+# Editorial solution
+
+def diagonalDifference(arr):
+    # Write your code here, O(n)
+    #l, r = left sum, right sum
+    l, r = 0, 0
+    # single pass, grab both values
+    for i in range(len(arr)):
+        l += arr[i][i]
+        r += arr[i][-i-1]
+    return abs(l-r)
+    
+  """
+  Notes:
+  Negative Indexing:
+  The index value of -1 gives the last element, and -2 gives the second last element of an array. The negative indexing starts from where the array ends. This means 
+  that the last element of the array is the first element in the negative indexing which is -1.
+  """
