@@ -167,3 +167,30 @@ def diagonalDifference(arr):
         second += arr[i][num - 1 - i]
         
     return abs(first - second)
+    
+  """
+  Counting Sort 1
+  """
+  
+  # initial solution - this was computally expensive as it used a nested for loop (I THINK it has time complexity n^2)
+  
+  def countingSort(arr):
+    length = len(arr)
+    result = [0] * 100
+    for i in range(100):
+        for j in arr:
+            if i == j:
+                result[i] += 1 
+    return result  
+
+# my better second solution which only used 1 for loop and has much better time complexity - I THINK it has time complexity n
+
+def countingSort(arr):
+    length = len(arr)
+    result = [0] * 100
+    for i in arr:
+        if result[i] == 0:
+            result[i] += 1
+        else:
+            result[i] += 1
+    return result  
