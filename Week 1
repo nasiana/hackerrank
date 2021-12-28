@@ -1,5 +1,7 @@
 """
-Sparse Arrays
+Sparse Arrays:
+There is a collection of input strings and a collection of query strings. For each query string, determine how many times it occurs in the list of input strings. 
+Return an array of the results.
 """
 
 # My solution
@@ -63,7 +65,8 @@ def matchingStrings(strings, queries):
  """
  
  """
- Lonely Integer
+ Lonely Integer:
+ Given an array of integers, where all elements but one occur twice, find the unique element.
  """
 
 # My solution - hehe I used code that I learnt in the previous example
@@ -110,7 +113,8 @@ print(list(my_dict.keys())[list(my_dict.values()).index(112)])
 """
 
 """
-Diagonal Difference
+Diagonal Difference:
+Given a square matrix, calculate the absolute difference between the sums of its diagonals.
 """
 
 # My solution 
@@ -150,3 +154,16 @@ def diagonalDifference(arr):
   The index value of -1 gives the last element, and -2 gives the second last element of an array. The negative indexing starts from where the array ends. This means 
   that the last element of the array is the first element in the negative indexing which is -1.
   """
+
+# Another solution I liked
+
+def diagonalDifference(arr):
+    num = len(arr)
+    first = 0
+    second = 0
+    for i in range(0, num):
+        first += arr[i][i]
+        # (num - 1) represents the length of the array and is equal to both length of rows and columns in a square matrix
+        second += arr[i][num - 1 - i]
+        
+    return abs(first - second)
