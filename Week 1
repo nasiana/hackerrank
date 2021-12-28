@@ -220,3 +220,9 @@ def pangrams(s):
         if i in s.lower():
             count += 1
     return "pangram" if count == alphabet_length else "not pangram"
+    
+# solution taken from discussion board on hackerrank
+
+def pangrams(s):
+    return 'pangram' if len(set(s.replace(' ','').lower()))==26 else 'not pangram'
+   
