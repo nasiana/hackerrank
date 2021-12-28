@@ -203,3 +203,20 @@ def countingSort(arr):
     for i in arr:
         result[i] += 1
     return(result)
+
+"""
+Pangrams:
+A pangram is a string that contains every letter of the alphabet. Given a sentence determine whether it is a pangram in the English alphabet. Ignore case. Return 
+either pangram or not pangram as appropriate.
+"""
+
+# My solution 
+
+def pangrams(s):
+    alphabet = list(map(chr, range(97, 123)))
+    alphabet_length = len(alphabet)
+    count = 0
+    for i in alphabet:
+        if i in s.lower():
+            count += 1
+    return "pangram" if count == alphabet_length else "not pangram"
