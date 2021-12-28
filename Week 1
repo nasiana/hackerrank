@@ -107,4 +107,27 @@ print(key_list[position])
  
 # one-liner
 print(list(my_dict.keys())[list(my_dict.values()).index(112)])
-    """
+"""
+
+"""
+Diagonal Difference
+"""
+
+# My solution 
+
+def diagonalDifference(arr):
+    n = len(arr)
+    D2_idx = n - 1
+    D1 = 0
+    D2 = 0
+    for i in range(0, n):
+    # accessing elements by index in a list has a constant time complexity, it's quick and efficient
+        D1 += arr[i][i]
+        D2 += arr[i][D2_idx]
+        D2_idx -= 1
+    return abs(D1-D2)
+    
+ """
+ Notes:
+ Python doesn't have a built-in type for matrices. However, we can treat a list of a list as a matrix, therefore we code matrixes in Python as nested lists.
+ """
