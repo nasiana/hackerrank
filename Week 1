@@ -226,3 +226,37 @@ def pangrams(s):
 def pangrams(s):
     return 'pangram' if len(set(s.replace(' ','').lower()))==26 else 'not pangram'
    
+"""
+Permuting Two Arrays
+"""
+
+# My solution
+
+def twoArrays(k, A, B):
+    if A != sorted(A):
+        A = sorted(A)
+    B = sorted(B, reverse = True)
+    C = list(zip(A, B))
+    for c,v in enumerate(C):
+        if sum(v) >= k:
+            if c == (len(C) - 1):
+                return "YES"
+        else:
+            return "NO"
+ 
+ # discussion solution
+ def twoArrays(k, A, B):
+    # Write your code here
+    # Create two arrays (one sorted ascending, one sorted descending):
+    A.sort()
+    B.sort(reverse=True)
+    for i in range(len(A)):
+        if(A[i] + B[i] < k):
+            return "NO"
+    return "YES"
+    
+  """
+  Comment from another user:
+  I had a very similar solution but I found that using B.sort(reverse=True) made it run much slower than defining a variable j within the loop where 
+  j = len(A) - i - 1 and using that to index array B instead
+  """
