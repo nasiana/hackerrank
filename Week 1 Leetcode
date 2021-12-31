@@ -2,6 +2,8 @@
 Climbing Stairs
 """
 
+# Solution 1
+
 class Solution:
     def climbStairs(self, n: int) -> int:
         if n == 1:
@@ -12,4 +14,26 @@ class Solution:
             return 3
         return Solution.climbStairs(self, n-2) + Solution.climbStairs(self, n-1)
         
-        
+# Solution 2
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        i = 0
+        sum_ = 0
+        while i <= n:
+            i += 1
+            if n == 1:
+                return 1
+            elif n == 2:
+                return 2
+            elif n == 3:
+                return 3
+            if sum_ == 0:
+                sum_ = Solution.climbStairs(self, n - 2) + Solution.climbStairs(self, n - 1)
+                return sum_
+            else:
+                prev_1 = Solution.climbStairs(self, n - 1)
+                prev_2 = sum_
+                result = prev_1 + prev_2
+                sum_ = result
+                return result
