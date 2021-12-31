@@ -260,3 +260,19 @@ def twoArrays(k, A, B):
   I had a very similar solution but I found that using B.sort(reverse=True) made it run much slower than defining a variable j within the loop where 
   j = len(A) - i - 1 and using that to index array B instead
   """
+
+"""
+Sales by Match
+"""
+
+def sockMerchant(n, ar):
+    ar = sorted(ar)
+    count = 0
+    j = 0
+    while j < len(ar) - 1:
+        if ar[j] == ar[j+1]:
+            count += 1
+            j += 2
+        else:
+            j += 1
+    return count 
