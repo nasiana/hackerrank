@@ -304,6 +304,8 @@ def sockMerchant(n, ar):
 Drawing Book
 """
 
+#my solution
+
 def pageCount(n, p):
     if n == p:
         return 0
@@ -321,3 +323,10 @@ def pageCount(n, p):
         else:
             ans = p/2
             return int(ans)
+
+# Editorial
+
+def pageCount(n, p):
+    if not n%2:
+        n += 1
+    return min(p//2, (n-p)//2)
