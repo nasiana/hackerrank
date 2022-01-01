@@ -300,3 +300,24 @@ def sockMerchant(n, ar):
             print(a[i], end = ' ')
     return
 
+"""
+Drawing Book
+"""
+
+def pageCount(n, p):
+    if n == p:
+        return 0
+    elif (n-p) < p:
+        if (n-p) == 1 and n%2 != 0:
+            return 0
+        elif (n-p) == 1 and n%2 == 0:
+            return 1
+        else:
+            ans = (n-p)/2 
+            return int(ans)
+    else:
+        if p == 1:
+            return 0
+        else:
+            ans = p/2
+            return int(ans)
