@@ -340,7 +340,6 @@ Caesar Cipher
 def caesarCipher(s, k):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     alphabet_new = alphabet[k:] + alphabet[0:k]
-    print(alphabet_new)
     s_2 = ""
     for i in s:
         if i != '-':
