@@ -342,13 +342,13 @@ def caesarCipher(s, k):
     alphabet_new = alphabet[k:] + alphabet[0:k]
     s_2 = ""
     for i in s:
-        if i != '-':
+        if i.isalpha():
             rep = alphabet.find(i.lower())
             if i.isupper():
                 s_2 += alphabet_new[rep].upper()
             else:
                 s_2 += alphabet_new[rep]
         else:
-            s_2 += '-'   
+            s_2 += str(i)   
     return s_2
  
