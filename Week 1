@@ -330,3 +330,26 @@ def pageCount(n, p):
     if not n%2:
         n += 1
     return min(p//2, (n-p)//2)
+
+"""
+Caesar Cipher
+"""
+
+# My solution
+
+def caesarCipher(s, k):
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    alphabet_new = alphabet[k:] + alphabet[0:k]
+    print(alphabet_new)
+    s_2 = ""
+    for i in s:
+        if i != '-':
+            rep = alphabet.find(i.lower())
+            if i.isupper():
+                s_2 += alphabet_new[rep].upper()
+            else:
+                s_2 += alphabet_new[rep]
+        else:
+            s_2 += '-'   
+    return s_2
+ 
