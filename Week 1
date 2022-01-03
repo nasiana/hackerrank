@@ -351,4 +351,20 @@ def caesarCipher(s, k):
         else:
             s_2 += str(i)   
     return s_2
+  
+ """
+ Max Min
+ """
+ 
+ # My solution 
+ 
+ def maxMin(k, arr):
+    arr=sorted(arr)
+    lst = []
+    k-=1
+    for i in range(len(arr)-k):
+        lst.append(arr[i+k]-arr[i])
+        print(i)
+    return min(lst)
+
  
