@@ -367,4 +367,32 @@ def caesarCipher(s, k):
         print(i)
     return min(lst)
 
+ """
+ Recursive Digit Sum
+ """
  
+ # My solution
+ 
+ def superDigit(n, k):
+    # list(map(int, str(n))) converts the integer to a list of integers
+    p = sum(list(map(int, str(n))))*k
+    if p < 10:
+        return p
+    return superDigit(p, 1)
+ 
+ # Editorial solution
+ 
+ def superDigit(n, k):
+    if len(n) == 1 and k == 1:
+        return n
+    total = str(sum([int(d) for d in n]) * k)
+    return superDigit(total, 1)
+  
+"""
+Notes:
+
+During my initial recursive function, I was declaring p=n*k in the function so that everytime the function ran, it would be declaring this repeatedly with every function call.
+
+Be wary of making sure the code is written such that every function is called the code makes sense, and variables aren't declared each time that would be wrong i.e. p = 10,
+when p=10 should not be valid for every function call
+"""
