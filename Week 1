@@ -430,3 +430,38 @@ def balancedSums(arr):
             i += 1
             sum_ += arr[i-1]
             sum_tot -= arr[i]
+
+# Discussion solution - it was described by the original author as a 'binary search solution'
+
+def balancedSums(arr):
+    # Write your code here
+    size = len(arr)
+    if size == 1: return 'YES'
+    # 1, 2, 3
+    
+    start = 0
+    end = size - 1
+    
+    while start <= end:
+        mid = int((start + end + 1) / 2)
+        left = 0
+        right = 0
+        if mid > 0 or mid < size - 1:
+            left = sum(arr[:mid])
+            right = sum(arr[mid+1:])
+        elif mid == 0:
+            left = 0
+            right = sum(arr[1:])
+        elif mid == size - 1:
+            left = sum(arr[:size - 1])
+            right = 0
+            
+        if left == right:
+            return 'YES'
+        elif left < right:
+            # move to right
+            start = mid + 1
+        else:
+            # move to left
+            end = mid - 1
+        
