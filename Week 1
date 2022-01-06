@@ -396,3 +396,37 @@ During my initial recursive function, I was declaring p=n*k in the function so t
 Be wary of making sure the code is written such that every function is called the code makes sense, and variables aren't declared each time that would be wrong i.e. p = 10,
 when p=10 should not be valid for every function call
 """
+
+"""
+Sherlock and Array
+"""
+
+# My solution 
+
+def balancedSums(arr):
+    # sum_ refers to the sum of elements to the left
+    # sum_tot refers to the sum of elements to the right
+    i = 0
+    sum_tot = sum(arr)
+    if len(arr) == 1:
+        return 'YES'
+    while True:
+        if i == 0:
+            sum_tot -= arr[i] 
+            if sum_tot == 0:
+                return 'YES'
+            else:
+                i += 1
+                sum_ = arr[i-1]
+                sum_tot -= arr[i] 
+        if i == len(arr)-1:
+            if sum_ == 0:
+                return 'YES'
+            else:
+                return 'NO'
+        if sum_ == sum_tot:
+            return 'YES'
+        else:
+            i += 1
+            sum_ += arr[i-1]
+            sum_tot -= arr[i]
