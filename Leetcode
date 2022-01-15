@@ -12,3 +12,19 @@ class Solution:
             if val in nums_map:
                 return(i, nums_map[val])
             nums_map[nums[i]] = i 
+
+"""
+Best Time to Buy and Sell Stock
+"""
+
+# My solution
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        max_profit = 0
+        min_price = max(prices)
+        length = len(prices)
+        for i in range(length):
+            min_price = min(min_price, prices[i])
+            max_profit = max(max_profit, prices[i]-min_price)
+        return max_profit
