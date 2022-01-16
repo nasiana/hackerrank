@@ -56,9 +56,7 @@ class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         # adding 1 as this is 1-indexed
         length = len(numbers)
-        num_dict = {}
         for i in range(length):
-            num_dict[i] = numbers[i]
             val =  target - numbers[i]
             if val in numbers and numbers.index(val) != i:
                 if i < numbers.index(val):
