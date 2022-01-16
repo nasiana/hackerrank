@@ -54,11 +54,11 @@ Two Sum II - Input Array Is Sorted
 
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        # adding 1 as this is 1-indexed
         length = len(numbers)
         for i in range(length):
             val =  target - numbers[i]
             if val in numbers and numbers.index(val) != i:
+                # adding 1 as this is 1-indexed
                 if i < numbers.index(val):
                     return [i+1, numbers.index(val)+1]
                 else:
