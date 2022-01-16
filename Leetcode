@@ -63,3 +63,26 @@ class Solution:
                     return [i+1, numbers.index(val)+1]
                 else:
                     return [numbers.index(val)+1, i+1]
+
+# Coding my own version of solution given
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        length = len(numbers)
+        i = 0
+        j = length-1
+        if numbers[i] + numbers[j] == target:
+            return [i+1, j+1]
+        while numbers[i] + numbers[j] != target:
+            if numbers[i] + numbers[j] < target:
+                i += 1
+            if numbers[i] + numbers[j] > target:
+                j -= 1
+            if numbers[i] + numbers[j] == target:
+                return [i+1, j+1]
+
+"""
+We use two indices, initially pointing to the first and the last element, respectively. Compare the sum of these two elements with target.
+If the sum is equal to target, we found the exactly only solution. If it is less than target, we increase the smaller index by one. 
+If it is greater than target, we decrease the larger index by one. Move the indices and repeat the comparison until the solution is found.
+"""
