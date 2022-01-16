@@ -45,3 +45,23 @@ class Solution:
             max_sum = max(max_sum+nums[i], nums[i])
             max_sum_prev = max(max_sum, max_sum_prev)
         return max_sum_prev
+
+"""
+Two Sum II - Input Array Is Sorted
+"""
+
+# My solution
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        # adding 1 as this is 1-indexed
+        length = len(numbers)
+        num_dict = {}
+        for i in range(length):
+            num_dict[i] = numbers[i]
+            val =  target - numbers[i]
+            if val in numbers and numbers.index(val) != i:
+                if i < numbers.index(val):
+                    return [i+1, numbers.index(val)+1]
+                else:
+                    return [numbers.index(val)+1, i+1]
