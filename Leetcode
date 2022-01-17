@@ -89,3 +89,48 @@ We use two indices, initially pointing to the first and the last element, respec
 If the sum is equal to target, we found the exactly only solution. If it is less than target, we increase the smaller index by one. 
 If it is greater than target, we decrease the larger index by one. Move the indices and repeat the comparison until the solution is found.
 """
+
+"""
+Shortest Word Distance
+
+Given an array of strings wordsDict and two different strings that already exist in the array word1 and word2, return the shortest 
+distance between these two words in the list.
+"""
+
+# My solution
+
+class Solution:
+    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+        length = len(wordsDict)
+        word_dict = {}
+        min_d = math.inf
+        j = 0
+        for i in range(length):
+            if wordsDict[i] == word1 and len(word_dict) == 0:
+                word_dict[j] = i
+                wd1 = True
+                wd2 = False
+                j+=1
+            if wordsDict[i] == word2 and len(word_dict) == 0:
+                word_dict[j] = i
+                wd1 = False
+                wd2 = True
+                j+=1
+            if wordsDict[i] == word1:
+                temp_idx = len(word_dict)-1
+                if wd2 == True:
+                    min_d = min(min_d, i-word_dict[temp_idx])
+                word_dict[j] = i
+                wd1 = True
+                wd2 = False
+                j+=1
+            if wordsDict[i] == word2:
+                temp_idx = len(word_dict)-1
+                if wd1 == True:
+                    min_d = min(min_d, i-word_dict[temp_idx])
+                word_dict[j] = i
+                wd1 = False
+                wd2 = True
+                j+=1
+        return min_d
+    
