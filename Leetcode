@@ -199,3 +199,27 @@ class Solution:
             # swap with you
             if nums[slow] != 0:
                 slow += 1
+
+"""
+First Unique Character in a String
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+"""
+
+# My solution
+
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        hashdict = {}
+        for c,v in enumerate(s):
+            if v in hashdict:
+                hashdict[v] +=1
+            else:
+                hashdict[v] = 1
+        val_list = list(hashdict.values())
+        if 1 in val_list:
+            position = val_list.index(1)
+            key_list = list(hashdict.keys())
+            return s.index(key_list[position])
+        else:
+            return -1
