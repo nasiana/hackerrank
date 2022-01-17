@@ -177,11 +177,13 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        length = len(nums)
-        count = 0 
-        if length > 1:
-            for i in range(length):
-                if nums[i] != 0:
-                    if count != i:
-                        nums[count], nums[i] = nums[i], 0
-                    count +=1
+        cur = 0
+        if len(nums) == 1:
+            return nums[0]
+        for c,v in enumerate(nums):
+            if v != 0:
+                if cur != c:
+                    nums[cur], nums[c] = nums[c], 0
+                cur +=1 
+                    
+                
