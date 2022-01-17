@@ -182,5 +182,6 @@ class Solution:
         if length > 1:
             for i in range(length):
                 if nums[i] != 0:
-                    nums[count], nums[i] = nums[i], nums[count]
+                    if count != i:
+                        nums[count], nums[i] = nums[i], 0
                     count +=1
