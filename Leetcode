@@ -117,6 +117,9 @@ class Solution:
                 temp_idx = len(word_dict)-1
                 if wd2 == True:
                     min_d = min(min_d, i-word_dict[temp_idx])
+                    # Once we find the minDistance to be equal to 1, we can just return because it can never go down below that.
+                    if min_d == 1:
+                        return min_d
                 word_dict.append(i)
                 wd1 = True
                 wd2 = False
@@ -124,6 +127,8 @@ class Solution:
                 temp_idx = len(word_dict)-1
                 if wd1 == True:
                     min_d = min(min_d, i-word_dict[temp_idx])
+                    if min_d == 1:
+                        return min_d
                 word_dict.append(i)
                 wd1 = False
                 wd2 = True
