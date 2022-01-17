@@ -240,3 +240,14 @@ class Solution:
             if count[ch] == 1:
                 return idx     
         return -1
+
+"""
+Notes:
+For my solution, I was able to not have to loop twice as I entered values in the dictionary through a for loop rather than using 
+the collections Counter container. Therefore, the order of my Python dictionary will match that of the order of the string, and the 
+first occurence will be synonymous with the first occurence in a string.
+
+(In Python 3 onwards, Python dictionaries remember order in which values were added)
+
+However, this isnt the same for the Collections counter container so you have to loop twice.
+"""
