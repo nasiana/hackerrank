@@ -326,3 +326,41 @@ class Solution(object):
             elif move == 'R': x += 1
 
         return x == y == 0
+
+"""
+Find Pivot Index
+
+Given an array of integers nums, calculate the pivot index of this array.
+
+The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers 
+strictly to the index's right.
+
+If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to 
+the right edge of the array.
+
+Return the leftmost pivot index. If no such index exists, return -1.
+"""
+
+# My solution
+
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        length = len(nums)
+        if length == 1:
+            return 0
+        sum_left = sum_right = 0
+        for c,v in enumerate(nums):
+            if c == 0:
+                sum_right = sum(nums[1:])
+                if sum_right == sum_left:
+                    return c
+                sum_left += v 
+            elif c > 0:
+                sum_right -= v
+                if sum_left == sum_right:
+                    return c
+                sum_left += v
+            elif c == length - 1:
+                if sum_left == 0:
+                    return c
+        return -1
