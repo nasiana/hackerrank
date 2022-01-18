@@ -251,3 +251,65 @@ first occurence will be synonymous with the first occurence in a string.
 
 However, this isnt the same for the Collections counter container so you have to loop twice.
 """
+
+"""
+Robot Return to Origin
+
+There is a robot starting at the position (0, 0), the origin, on a 2D plane. Given a sequence of its moves, judge if this robot ends up 
+at (0, 0) after it completes its moves.
+
+You are given a string moves that represents the move sequence of the robot where moves[i] represents its ith move. Valid moves are 'R' 
+(right), 'L' (left), 'U' (up), and 'D' (down).
+
+Return true if the robot returns to the origin after it finishes all of its moves, or false otherwise.
+
+Note: The way that the robot is "facing" is irrelevant. 'R' will always make the robot move to the right once, 'L' will always make it 
+move left, etc. Also, assume that the magnitude of the robot's movement is the same for each move.
+"""
+
+# I wrote 3 solutions
+
+# Solution 1 
+
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        up_down = 0
+        right_left = 0
+        for i in moves:
+            if i == 'U':
+                up_down +=1
+            if i == 'D':
+                up_down -= 1
+            if i == 'R':
+                right_left +=1
+            if i == 'L':
+                right_left -=1
+        if up_down == 0 and right_left == 0:
+            return True
+        else:
+            return False
+
+# Solution 2 - I used a new method I learnt from the collections module
+
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        # remember to put the iterable in the parentheses i.e. s -> string thus collections.Counter(s)
+        count = collections.Counter(moves)
+        if count['U'] == count['D'] and count['L'] == count['R']:
+            return True
+        else:
+            return False
+            
+# Solution 3 - this solution appeared to perform the best (best time complexity) when I ran it on Leetcode 
+
+        
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        hashdict = {}
+        hashdict['U'] = hashdict['D'] = hashdict['L'] = hashdict['R'] =  0
+        for i in moves:
+            hashdict[i] += 1
+        if hashdict['U'] == hashdict['D'] and hashdict['L'] == hashdict['R']:
+            return True
+        else:
+            return False
