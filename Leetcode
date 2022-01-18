@@ -300,7 +300,7 @@ class Solution:
         else:
             return False
             
-# Solution 3 - this solution appeared to perform the best (best time complexity) when I ran it on Leetcode 
+# Solution 3
 
         
 class Solution:
