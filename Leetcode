@@ -360,7 +360,4 @@ class Solution:
                 if sum_left == sum_right:
                     return c
                 sum_left += v
-            elif c == length - 1:
-                if sum_left == 0:
-                    return c
         return -1
