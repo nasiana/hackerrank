@@ -388,3 +388,36 @@ index i, then the other sum to the right of the index would just be S - nums[i] 
 As such, we only need to know about leftsum to check whether an index is a pivot index in constant time. Let's do that: as we iterate
 through candidate indexes i, we will maintain the correct value of leftsum.
 """
+
+"""
+Pascal's Triangle
+
+Given an integer numRows, return the first numRows of Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+""
+
+# My solution
+
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        arr= []
+        for i in range(numRows):
+            if i == 0:
+                arr.append([1])
+            elif i == 1:
+                arr.append([1,1])
+            else:
+                sub_arr = [None]*(i+1)
+                for j in range(i+1):
+                    if j == 0 or j == i:
+                        sub_arr[j] = 1
+                    if j == 1 or j == (i-1):
+                        sub_arr[j] = i
+                    if j != 0 and j!= i and j!= 1 and j!=(i-1):
+                        sub_arr[j] = arr[i-1][j-1] + arr[i-1][j]
+                arr.append(sub_arr)
+        return arr 
+            
