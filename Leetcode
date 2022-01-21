@@ -484,3 +484,34 @@ class Solution:
         for i in range(1,rowIndex):
             arr[i] = prev_row[i-1]+prev_row[i]
         return arr
+
+"""
+High Five
+
+Given a list of the scores of different students, items, where items[i] = [IDi, scorei] represents one score from a student with IDi, 
+calculate each student's top five average.
+
+Return the answer as an array of pairs result, where result[j] = [IDj, topFiveAveragej] represents the student with IDj and their top 
+five average. Sort result by IDj in increasing order.
+
+A student's top five average is calculated by taking the sum of their top five scores and dividing it by 5 using integer division.
+"""
+
+# My solution
+
+class Solution:
+    def highFive(self, items: List[List[int]]) -> List[List[int]]:
+        items = sorted(items)
+        grades_dict = {}
+        arr = []
+        for c,v in enumerate(items):
+            if v[0] in grades_dict:
+                min_grades = min(grades_dict[v[0]])
+                if v[1] > min_grades: 
+                    grades_dict[v[0]].remove(min_grades)
+                    grades_dict[v[0]].append(v[1])
+            else:
+                grades_dict[v[0]] = [v[1]] + [0]*4 
+        for k,v in grades_dict.items():
+            arr.append([k, sum(v)//5])
+        return arr
