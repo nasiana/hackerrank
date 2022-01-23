@@ -539,17 +539,15 @@ class Solution:
         arr = [None]*(length+1)
         id_I = 0
         id_D = length
-        for i in range(length+1):  
-            if i == length:
-                if s[length-1] == 'D':
-                    arr[i] = id_D
-                if s[length-1] == 'I':
-                    arr[i] = id_I
-                return arr
+        for i in range(length):  
             if s[i] == 'I':
                 arr[i] = id_I
                 id_I +=1
             if s[i] == 'D':
                 arr[i] = id_D
                 id_D -= 1
+        if s[length-1] == 'D':
+            arr[length] = id_D
+        else:
+            arr[length] = id_I   
         return arr
