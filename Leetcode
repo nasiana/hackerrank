@@ -546,6 +546,7 @@ class Solution:
             if s[i] == 'D':
                 arr[i] = id_D
                 id_D -= 1
+        # had this outside the for loop as you don't need to run this every time
         if s[length-1] == 'D':
             arr[length] = id_D
         else:
