@@ -570,48 +570,25 @@ Output: "apple"
 
 https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/
 
-# My solution
+# My solution (based off a video I watched about this problem)
 
 class Solution:
     def findLongestWord(self, s: str, dictionary: List[str]) -> str:
+        def helper(sub,whole):
+            N,M = len(word), len(whole)
+            i,j = 0,0
+            while i<N and j<M:
+                if sub[i] == whole[j]:
+                    i+=1
+                j+=1
+            return i==N
+        long_word=""
         long_length = 0
-        long_word = ""
-        length_s = len(s)
-        s_dict = {}
-        dict_bool = True 
-        dictionary = sorted(dictionary)
-        for i in s:
-            if i not in s_dict:
-                s_dict[i] = 1
-            if i in s_dict:
-                s_dict[i] +=1
-        print(s_dict)
-        for c,v in enumerate(dictionary):
-            length_value = len(v)
-            long_dict = {}
-            if length_value == 1 and v in s_dict:
-                if long_length<1:
-                    long_length = 1
-                    long_word = v
-            if length_value>1:
-                for i in v:
-                    if i not in s_dict:
-                        dict_bool = False
-                        break
-                    if i in long_dict:
-                        long_dict[i] +=1
-                        if long_dict[i] > s_dict[i]:
-                            dict_bool = False
-                            break
-                    if i in s_dict and i not in long_dict:
-                        long_dict[i] = 1
-            if v == "awefawfwaf":
-                print(long_dict)
-            if dict_bool == True:
-                if length_value > long_length:
-                    long_word = v
-                    long_length = length_value
-                # if length_value == long_length:
-                #     long_word = min(long_word,v)
-            dict_bool = True
+        for word in dictionary:
+            if helper(word, s) == True:
+                if len(word) > long_length:
+                    long_word = word
+                    long_length = len(word)
+                if len(word) == long_length:
+                    long_word = min(word, long_word)
         return long_word
