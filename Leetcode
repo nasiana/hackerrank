@@ -552,3 +552,66 @@ class Solution:
         else:
             arr[length] = id_I   
         return arr
+
+"""
+524. Longest Word in Dictionary through Deleting
+
+Given a string s and a string array dictionary, return the longest string in the dictionary that can be formed by deleting some of the 
+given string characters. If there is more than one possible result, return the longest word with the smallest lexicographical order. If 
+there is no possible result, return the empty string.
+
+ 
+
+Example 1:
+
+Input: s = "abpcplea", dictionary = ["ale","apple","monkey","plea"]
+Output: "apple"
+"""
+
+https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/
+
+# My solution
+
+class Solution:
+    def findLongestWord(self, s: str, dictionary: List[str]) -> str:
+        long_length = 0
+        long_word = ""
+        length_s = len(s)
+        s_dict = {}
+        dict_bool = True 
+        dictionary = sorted(dictionary)
+        for i in s:
+            if i not in s_dict:
+                s_dict[i] = 1
+            if i in s_dict:
+                s_dict[i] +=1
+        print(s_dict)
+        for c,v in enumerate(dictionary):
+            length_value = len(v)
+            long_dict = {}
+            if length_value == 1 and v in s_dict:
+                if long_length<1:
+                    long_length = 1
+                    long_word = v
+            if length_value>1:
+                for i in v:
+                    if i not in s_dict:
+                        dict_bool = False
+                        break
+                    if i in long_dict:
+                        long_dict[i] +=1
+                        if long_dict[i] > s_dict[i]:
+                            dict_bool = False
+                            break
+                    if i in s_dict and i not in long_dict:
+                        long_dict[i] = 1
+            if v == "awefawfwaf":
+                print(long_dict)
+            if dict_bool == True:
+                if length_value > long_length:
+                    long_word = v
+                    long_length = length_value
+                # if length_value == long_length:
+                #     long_word = min(long_word,v)
+            dict_bool = True
+        return long_word
