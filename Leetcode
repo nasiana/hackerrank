@@ -592,3 +592,28 @@ class Solution:
                 if len(word) == long_length:
                     long_word = min(word, long_word)
         return long_word
+
+# Solution from watching a video about the optimal algorithm 
+
+class Solution:
+    def findLongestWord(self, s: str, dictionary: List[str]) -> str:
+        def helper(sub,whole):
+            result = 0
+            for i in sub:
+                try:
+                    result = whole.index(i, result)
+                    # VERY IMPORTANT - remember to increment by 1 so the start is after the index just found
+                    result+=1
+                except:
+                    return False
+            return True 
+        long_word=""
+        long_length = 0
+        for word in dictionary:
+            if helper(word, s):
+                if len(word) > long_length:
+                    long_word = word
+                    long_length = len(word)
+                if len(word) == long_length:
+                    long_word = min(word, long_word)
+        return long_word
