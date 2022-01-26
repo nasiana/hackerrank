@@ -634,7 +634,7 @@ Output: "world"
 Explanation: The word "world" can be built one character at a time by "w", "wo", "wor", and "worl".
 """
 
-# My solution
+# My solution - 53 / 59 test cases passed.(Couldn't do better)
 
 class Solution:
     def longestWord(self, words: List[str]) -> str:
@@ -647,12 +647,14 @@ class Solution:
             if length_initial!=1:
                 while i<len(words) and words[i][:1] == initial:
                     i+=1
-                if i<len(words):
+                if i<len(words):   
                     initial = words[i][:1]
                     length_initial = len(words[i])
             if length_initial==1:
                 prev_word = words[i]
                 i+=1
+                if len(long_word)<1:
+                    long_word = prev_word
             while 0<i<len(words) and words[i][:1] == initial and length_initial==1:
                 cur_word = words[i]
                 if prev_word == cur_word[:-1]:
@@ -660,6 +662,7 @@ class Solution:
                         long_word = cur_word
                     if len(cur_word) == len(long_word):
                         long_word = min(long_word, cur_word)
-                prev_word = cur_word
+                if (len(cur_word))-(len(prev_word))==1:
+                    prev_word = cur_word
                 i+=1 
         return long_word
