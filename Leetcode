@@ -666,3 +666,30 @@ class Solution:
                     prev_word = cur_word
                 i+=1 
         return long_word
+
+# Editorial solution
+
+class Solution(object):
+    def longestWord(self, words):
+        ans = ""
+        # set() method is used to convert any of the iterable to sequence of iterable elements with distinct elements, commonly called Set. 
+        wordset = set(words)
+        for word in words:
+            if len(word) > len(ans) or len(word) == len(ans) and word < ans:
+                # The all() function is an inbuilt function in Python which returns true if all the elements of a given iterable( List, Dictionary, Tuple, set, etc) are True else it returns False. It also returns True if the iterable object is empty.
+                if all(word[:k] in wordset for k in range(1, len(word))):
+                    ans = word
+
+        return ans
+  
+ # Editorial solution 2 - sorts the list beforehand
+ 
+ class Solution(object):
+    def longestWord(self, words):
+        wordset = set(words)
+        words.sort(key = lambda c: (-len(c), c))
+        for word in words:
+            if all(word[:k] in wordset for k in xrange(1, len(word))):
+                return word
+
+        return ""
