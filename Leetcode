@@ -617,3 +617,49 @@ class Solution:
                 if len(word) == long_length:
                     long_word = min(word, long_word)
         return long_word
+
+"""
+Longest Word in Dictionary
+
+Given an array of strings words representing an English Dictionary, return the longest word in words that can be built one character at a time by other words in words.
+
+If there is more than one possible answer, return the longest word with the smallest lexicographical order. If there is no answer, return the empty string.
+
+ 
+
+Example 1:
+
+Input: words = ["w","wo","wor","worl","world"]
+Output: "world"
+Explanation: The word "world" can be built one character at a time by "w", "wo", "wor", and "worl".
+"""
+
+# My solution
+
+class Solution:
+    def longestWord(self, words: List[str]) -> str:
+        words = sorted(words)
+        i = 0
+        long_word = ""
+        while i < len(words):
+            initial = words[i][:1]
+            length_initial = len(words[i])
+            if length_initial!=1:
+                while i<len(words) and words[i][:1] == initial:
+                    i+=1
+                if i<len(words):
+                    initial = words[i][:1]
+                    length_initial = len(words[i])
+            if length_initial==1:
+                prev_word = words[i]
+                i+=1
+            while 0<i<len(words) and words[i][:1] == initial and length_initial==1:
+                cur_word = words[i]
+                if prev_word == cur_word[:-1]:
+                    if len(cur_word) > len(long_word):
+                        long_word = cur_word
+                    if len(cur_word) == len(long_word):
+                        long_word = min(long_word, cur_word)
+                prev_word = cur_word
+                i+=1 
+        return long_word
