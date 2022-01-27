@@ -756,5 +756,38 @@ Whenever our found word would be superior, we check if all it's prefixes are pre
 
 Alternatively, we could have sorted the words beforehand, so that we know the word we are considering would be the answer if all it's 
 prefixes are present.
+"""
 
 """
+Longest Substring Without Repeating Characters
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+"""
+
+# My solution - IT FULLY WORKS!!!!
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        longest_string = 0
+        long_list =[]
+        for c,v in enumerate(s):
+            if c == 0:
+                long_list.append(v)
+                longest_string = len(v)
+            if c>0:
+                # ORDER MATTERS! it's important the second if statement is before the first as it will append the element thus which will automatically make it satisfy (if v in long_list) which will then propogate errors
+                if v in long_list:
+                    # VERY IMPORTANT to remember to add the "+1" to the "long_list.index(v))" otherwise you will be at the wrong start point and propogating errors
+                    long_list=long_list[(long_list.index(v))+1:]
+                if v not in long_list:
+                    long_list.append(v)
+                longest_string = max(longest_string, len(long_list))
+        return longest_string
