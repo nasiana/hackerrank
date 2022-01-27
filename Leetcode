@@ -793,3 +793,64 @@ class Solution:
                     long_list.append(v)
                 longest_string = max(longest_string, len(long_list))
         return longest_string
+
+# My take on solution seen in https://www.youtube.com/watch?v=RHM5G8HGf6M . Sliding window solution.
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        hash_dict = {}
+        i = res = 0
+        for c,v in enumerate(s):
+            if v in hash_dict:
+                i = max(i, hash_dict[v]+1)
+                hash_dict[v] = c
+            if v not in hash_dict:
+                hash_dict[v] = c
+            res = max(res, c-i+1)
+        return res
+        
+# Editorial solution 
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        chars = [0] * 128
+
+        left = right = 0
+
+        res = 0
+        while right < len(s):
+            r = s[right]
+            chars[ord(r)] += 1
+
+            while chars[ord(r)] > 1:
+                l = s[left]
+                chars[ord(l)] -= 1
+                left += 1
+
+            res = max(res, right - left + 1)
+
+            right += 1
+        return res
+
+# Another editorial solution
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        n = len(s)
+        ans = 0
+        # mp stores the current index of a character
+        mp = {}
+
+        i = 0
+        # try to extend the range [i, j]
+        for j in range(n):
+            if s[j] in mp:
+                i = max(mp[s[j]], i)
+
+            ans = max(ans, j - i + 1)
+            mp[s[j]] = j + 1
+
+        return ans
+        
+
+ .
