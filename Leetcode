@@ -741,3 +741,20 @@ class Solution:
                             long_word = min(long_word, words[i])
                     i+=1
         return long_word
+
+"""
+Notes from editorial solution:
+
+Approach #1: Brute Force [Accepted]
+Intuition
+
+For each word, check if all prefixes word[:k] are present. We can use a Set structure to check this quickly.
+
+Algorithm
+
+Whenever our found word would be superior, we check if all it's prefixes are present, then replace our answer.
+
+Alternatively, we could have sorted the words beforehand, so that we know the word we are considering would be the answer if all it's 
+prefixes are present.
+
+"""
