@@ -718,3 +718,26 @@ class Solution:
                             long_word = min(long_word, words[i])
                     i+=1
         return long_word
+
+# The above solution but without my extra spin (this is my own solution)
+
+class Solution:
+    def longestWord(self, words: List[str]) -> str:
+        i = 0
+        words = sorted(words)
+        long_word = ""
+        while i < len(words):
+            init = words[i][:1]
+            length_check = len(words[i])
+            if length_check!=1:
+                while i<len(words) and words[i][:1] == init:
+                    i+=1
+            while i<len(words) and words[i][:1] == init:
+                if length_check==1:
+                    if all(words[i][:j] in words for j in range(1,len(words[i]))):
+                        if len(words[i]) > len(long_word):
+                            long_word = words[i]
+                        if len(words[i]) == len(long_word):
+                            long_word = min(long_word, words[i])
+                    i+=1
+        return long_word
