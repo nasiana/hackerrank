@@ -851,6 +851,47 @@ class Solution:
             mp[s[j]] = j + 1
 
         return ans
-        
+  
+"""
+259. 3Sum Smaller
+
+Given an array of n integers nums and an integer target, find the number of index triplets i, j, k with 0 <= i < j < k < n that satisfy the condition nums[i] + nums[j] + nums[k] < target.
+
+ 
+
+Example 1:
+
+Input: nums = [-2,0,1,3], target = 2
+Output: 2
+Explanation: Because there are two triplets which sums are less than 2:
+[-2,0,1]
+[-2,0,3]
+"""
+
+# My solution - iterative solution with a bad time complexity. Could definitely be more optimized!
+
+class Solution:
+    def threeSumSmaller(self, nums: List[int], target: int) -> int:
+        if len(nums)<3:
+            return 0
+        count=0
+        nums = sorted(nums)
+        for c,v in enumerate(nums):
+            i = c+1
+            while i<len(nums):
+                tot=v+nums[i]
+                j = i+1 
+                # important to have the following 2 if statements as two seperate if statements alone
+                # if you combine these two if statements with and "and", it breaks
+                if j>=len(nums):
+                    break
+                if tot+nums[j]>=target:
+                    break
+                while j<len(nums) and tot+nums[j]<=target:
+                    if tot+nums[j]<target:
+                        count+=1
+                    j+=1
+                i+=1                    
+        return count
 
  .
