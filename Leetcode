@@ -895,7 +895,7 @@ class Solution:
                 i+=1                    
         return count
 
- .# ideal solution I'm working on [finish tomoz]
+# ideal solution I'm working on [finish tomoz]
 
 class Solution:
     def threeSumSmaller(self, nums: List[int], target: int) -> int:
