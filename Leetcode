@@ -851,7 +851,8 @@ class Solution:
             mp[s[j]] = j + 1
 
         return ans
-  
+
+https://leetcode.com/problems/3sum-smaller/
 """
 259. 3Sum Smaller
 
@@ -894,4 +895,24 @@ class Solution:
                 i+=1                    
         return count
 
- .
+ .# ideal solution I'm working on [finish tomoz]
+
+class Solution:
+    def threeSumSmaller(self, nums: List[int], target: int) -> int:
+        if len(nums)<3:
+            return 0
+        nums = sorted(nums)
+        count = 0
+        print(nums)
+        for i in range(len(nums)-2):
+            left = i+1
+            right = len(nums)-1
+            start=nums[i]
+            while left<right:
+                if start+nums[left]+nums[right]>=target:
+                    while right>left and start+nums[left]+nums[right]>=target:
+                        right-=1
+                while left<=right and start+nums[left]+nums[right]<target:
+                    count+=(right-left)
+                    left+=1
+            return count 
