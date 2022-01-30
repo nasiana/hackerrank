@@ -916,3 +916,56 @@ class Solution:
                     count+=(right-left)
                     left+=1
             return count 
+
+https://leetcode.com/problems/monotonic-array/
+"""
+Monotonic Array
+
+An array is monotonic if it is either monotone increasing or monotone decreasing.
+
+An array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums is monotone decreasing if for all i <= j, nums[i] >= nums[j].
+
+Given an integer array nums, return true if the given array is monotonic, or false otherwise.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,2,3]
+Output: true
+"""
+
+# My solution
+
+class Solution:
+    def isMonotonic(self, nums: List[int]) -> bool:
+        # make sure to add the following condition or it breaks the code and wont be able to run with my functions as they have been coded
+        if len(nums)<=2:
+            return True
+        def mono_inc(arr, start):
+            # increasing monotonic array so arr[i]<arr[i+1]
+            for i in range(start, len(arr)-1):
+                if arr[i+1]<arr[i]:
+                    return False
+            return True
+        def mono_dec(arr, start):
+            # decreasing monotonic array so arr[i+1]<arr[i]
+            for i in range(start, len(arr)-1):
+                if arr[i]<arr[i+1]:
+                    return False
+            return True
+        if nums[0]<nums[1]:
+            # make sure to add return statement otherwise it doesn't work
+            return mono_inc(nums,1)
+        if nums[0]>nums[1]:
+            return mono_dec(nums,1)
+        if nums[0]==nums[1]:
+            j=1
+            while nums[j]==nums[j+1]:
+                j+=1
+                if j == len(nums)-1:
+                    return True
+            if nums[j]<nums[j+1]:
+                return mono_inc(nums, j+1)
+            if nums[j]>nums[j+1]:
+                return mono_dec(nums,j+1)
