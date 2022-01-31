@@ -1029,3 +1029,34 @@ class Solution:
             except:
                 return False
         return True
+
+# My take on Editorial Solution: Approach 2: Two-Pointers
+
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        right = 0
+        for c,v in enumerate(s):
+            if right>=len(t):
+                return False
+            while right<len(t) and v!=t[right]:
+                right+=1
+                if right>=len(t):
+                    return False
+            if right<len(t) and v==t[right]:
+                right+=1
+        return True 
+        
+# Editorial Solution: Approach 2: Two-Pointers
+
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        LEFT_BOUND, RIGHT_BOUND = len(s), len(t)
+
+        p_left = p_right = 0
+        while p_left < LEFT_BOUND and p_right < RIGHT_BOUND:
+            # move both pointers or just the right pointer
+            if s[p_left] == t[p_right]:
+                p_left += 1
+            p_right += 1
+
+        return p_left == LEFT_BOUND
