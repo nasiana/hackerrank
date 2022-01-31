@@ -910,8 +910,26 @@ class Solution:
                 i+=1                    
         return count
 
-# ideal solution written by me
+# Editorial solution written by me. Not optimized so passed all tests but 1 as it takes too long. Makes use of 2 for loops.
 
+class Solution:
+    def threeSumSmaller(self, nums: List[int], target: int) -> int:
+        if len(nums)<3:
+            return 0
+        nums.sort()
+        count = 0
+        for j in range(len(nums)-2):
+            i = j+1
+            start = nums[j]
+            while i<len(nums)-1:
+                end = len(nums)-1
+                while i<end and start+nums[i]+nums[end]>=target:
+                    end-=1
+                count+=(end-i)
+                i+=1
+        return count
+
+# Optimized ideal solution written by me
 class Solution:
     def threeSumSmaller(self, nums: List[int], target: int) -> int:
         if len(nums)<3:
