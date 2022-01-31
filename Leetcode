@@ -910,15 +910,14 @@ class Solution:
                 i+=1                    
         return count
 
-# ideal solution I'm working on [finish tomoz]
+# ideal solution written by me
 
 class Solution:
     def threeSumSmaller(self, nums: List[int], target: int) -> int:
         if len(nums)<3:
             return 0
-        nums = sorted(nums)
+        nums.sort()
         count = 0
-        print(nums)
         for i in range(len(nums)-2):
             left = i+1
             right = len(nums)-1
@@ -927,10 +926,11 @@ class Solution:
                 if start+nums[left]+nums[right]>=target:
                     while right>left and start+nums[left]+nums[right]>=target:
                         right-=1
-                while left<=right and start+nums[left]+nums[right]<target:
+                while left<right and start+nums[left]+nums[right]<target:
                     count+=(right-left)
                     left+=1
-            return count 
+        # remember to have the return statement outside of the while loops!
+        return count 
 
 https://leetcode.com/problems/monotonic-array/
 """
