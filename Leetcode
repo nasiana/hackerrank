@@ -1060,3 +1060,28 @@ class Solution:
             p_right += 1
 
         return p_left == LEFT_BOUND
+
+# My take on another editorial solution which doesn't fully pass all the test cases
+
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        t_dict = {}
+        for c,v in enumerate(t):
+            if v in t_dict:
+                t_dict[v].append(c)
+            if v not in t_dict:
+                t_dict[v] = [c]
+        t_point = 0   
+        for c,v in enumerate(s):
+            if v not in t_dict:
+                return False
+            if v in t_dict:
+                pointer = 0
+                while True:
+                    if pointer>=len(t_dict[v]):
+                        return False
+                    if c>=t_dict[v][pointer] and t_point>=t_dict[v][pointer]:
+                        t_point = t_dict[v][pointer]
+                        break
+                    pointer+=1
+        return True
