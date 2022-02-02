@@ -1108,23 +1108,26 @@ Explanation: You can perform the following operations:
 You earn a total of 6 points.
 """
 
-# My solution - need to finish this tomoz!
+# My solution - need to redo this another day to make sure I remember how to do it !!!
 
 class Solution(object):
     def deleteAndEarn(self, nums):
         count = collections.Counter(nums)
         prev = None
-        # earn2 becomes most recent, earn1 is prev
+        # earn2 becomes most recent, earn1 is just before earn2
         earn1 = earn2 = 0
         for c,v in enumerate(sorted(count)):
             cur = v*count[v]
+            if c==0:
+                earn2 = cur
             if c>0 and v!=(prev+1):
-                temp = earn1
-                earn2 = max(cur+temp, cur+earn2)
+                temp = earn2
+                earn2 = cur+earn2
+                earn1 = temp
             if c>0 and v==(prev+1):
-                temp = earn1
-                earn2 = max(cur+temp, earn2)
+                temp = earn2
+                earn2 = max(cur+earn1, earn2)
+                earn1 = temp
             prev = v
-            earn1 = earn2
         return earn2
     
