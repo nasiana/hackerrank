@@ -1131,3 +1131,41 @@ class Solution(object):
             prev = v
         return earn2
     
+
+https://leetcode.com/problems/longest-palindromic-substring/
+"""
+5. Longest Palindromic Substring
+Given a string s, return the longest palindromic substring in s.
+
+ 
+
+Example 1:
+
+Input: s = "babad"
+Output: "bab"
+Explanation: "aba" is also a valid answer.
+Example 2:
+
+Input: s = "cbbd"
+Output: "bb"
+"""
+
+# My solution - finish tomoz!
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res = ''
+        res_l = 0
+        def helper(start,end):
+            res_l = 0
+            res = ''
+            while start>=0 and end<len(s) and s[start]==s[end]:
+                if end-start+1>res_l:
+                    res = s[start:end+1]
+                    res_l = end-start+1
+                start-=1
+                end +=1
+            return res
+        for i in range(len(s)):
+            choice = max(helper(i,i), helper(i,i+1))
+            res = max(res, choice)
