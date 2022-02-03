@@ -1150,12 +1150,12 @@ Input: s = "cbbd"
 Output: "bb"
 """
 
-# My solution - finish tomoz!
+# My solution - reconstructed after looking at the video solution
 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        res = ''
-        res_l = 0
+        final = res = ''
+        final_l = res_l = 0
         def helper(start,end):
             res_l = 0
             res = ''
@@ -1165,7 +1165,18 @@ class Solution:
                     res_l = end-start+1
                 start-=1
                 end +=1
-            return res
+            return (res, res_l)
         for i in range(len(s)):
-            choice = max(helper(i,i), helper(i,i+1))
-            res = max(res, choice)
+            op_1 = helper(i,i)
+            op_2 = helper(i,i+1)
+            if op_1[1]>op_2[1]:
+                res = op_1[0]
+                res_l = op_1[1]
+            if op_1[1]<op_2[1]:
+                res = op_2[0]
+                res_l = op_2[1]
+            if res_l>final_l:
+                final = res
+                final_l = res_l
+        return final
+
