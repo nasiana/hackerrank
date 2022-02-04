@@ -1193,36 +1193,27 @@ Input: digits = "23"
 Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 """
 
-# My solution - finish tomoz
+# Solution from: https://www.youtube.com/watch?v=7yyNwvzO240
 
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        convert_lst = []
-        digits_lst = []
-        def convert(digit):
-            letters = ''
-            if digit =='2':
-                letters = 'abc'
-            if digit =='3':
-                letters = 'def'
-            if digit =='4':
-                letters = 'ghi'
-            if digit =='5':
-                letters = 'jkl'
-            if digit == '6':
-                letters = 'mno'
-            if digit == '7':
-                letters = 'pqrs'
-            if digit =='8':
-                letters = 'tuv'
-            if digit =='9':
-                letters = 'wxyz'
-            return letters
-        if len(digits)==1:
-            string = convert(digits[0])
-            for i in string:
-                digits_lst.append(i)
-            return digits_lst
-        for i in digits:
-            convert_lst.append(convert(i))
-        final_lst = list(map(list, convert_lst))
+        lookup = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+        if len(digits)==0:
+            return []
+        output = [""]
+        for d in digits:
+            tmp = []
+            for v in lookup[d]:
+                for o in output:
+                    tmp.append(o+v)
+            output = tmp
+        return output
